@@ -1,0 +1,75 @@
+{
+  "name": "Eve",
+  "uncertainty": 3,
+  "children": [
+    {
+      "name": "Cain",
+      "uncertainty": 3,
+      "size": 35
+    },
+    {
+      "name": "Seth",
+      "uncertainty": 3,
+      "children": [
+        {
+          "name": "Marc",
+          "size": 20,
+          "uncertainty": 3
+        },
+        {
+          "name": "Janine",
+          "size": 30,
+          "uncertainty": 3,
+          "children": [
+            {
+              "name": "Kyle",
+              "size": 20,
+              "uncertainty": 3
+            },
+            {
+              "name": "Ken",
+              "size": 30,
+              "uncertainty": 3
+            },
+            {
+              "name": "Kevin",
+              "size": 40,
+              "uncertainty": 3
+            }
+          ]
+        },
+        {
+          "name": "Luke",
+          "size": 40,
+          "uncertainty": 3
+        }
+      ]
+    },
+    {
+      "name": "Oli",
+      "uncertainty": 3,
+      "size": 30
+    },
+    {
+      "name": "Awan",
+      "uncertainty": 3,
+      "children": [
+        {
+          "name": "David",
+          "uncertainty": 3,
+          "size": 76
+        },
+        {
+          "name": "Peter",
+          "uncertainty": 3,
+          "size": 23
+        }
+      ]
+    },
+    {
+      "name": "Horst",
+      "uncertainty": 3,
+      "size": 80
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "name": "Eve",
+  "uncertainty": 7,
+  "children": [
+    {
+      "name": "Cain",
+      "uncertainty": 10,
+      "size": 35
+    },
+    {
+      "name": "Seth",
+      "uncertainty": 5,
+      "children": [
+        {
+          "name": "Marc",
+          "size": 20,
+          "uncertainty": 2,
+          "children": [
+            {
+              "name": "A1",
+              "size": 10,
+              "uncertainty": 0
+            },
+            {
+              "name": "A2",
+              "size": 15,
+              "uncertainty": 5
+            },
+            {
+              "name": "A3",
+              "size": 20,
+              "uncertainty": 7
+            }
+          ]
+        },
+        {
+          "name": "Janine",
+          "size": 50,
+          "uncertainty": 4,
+          "children": [
+            {
+              "name": "B1",
+              "size": 12,
+              "uncertainty": 3
+            },
+            {
+              "name": "B2",
+              "size": 8,
+              "uncertainty": 3
+            },
+            {
+              "name": "B3",
+              "size": 15,
+              "uncertainty": 3
+            }
+          ]
+        },
+        {
+          "name": "Luke",
+          "size": 40,
+          "uncertainty": 2,
+          "children": [
+            {
+              "name": "C1",
+              "size": 3,
+              "uncertainty": 3
+            },
+            {
+              "name": "C2",
+              "size": 8,
+              "uncertainty": 3
+            },
+            {
+              "name": "C3",
+              "size": 5,
+              "uncertainty": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Oli",
+      "uncertainty": 3,
+      "size": 30
+    },
+    {
+      "name": "Awan",
+      "uncertainty": 3,
+      "children": [
+        {
+          "name": "David",
+          "uncertainty": 5,
+          "size": 76
+        },
+        {
+          "name": "Peter",
+          "uncertainty": 3,
+          "size": 23
+        }
+      ]
+    },
+    {
+      "name": "Horst",
+      "uncertainty": 3,
+      "size": 80
+    }
+  ]
+}
