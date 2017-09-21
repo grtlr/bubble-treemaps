@@ -19,3 +19,12 @@ We present a novel type of circular treemap, where we intentionally allocate ext
 }
 ```
 
+### Build
+
+To build, run:
+
+    npm run build
+    
+To build and minimize, run: 
+
+    npm run minimize
