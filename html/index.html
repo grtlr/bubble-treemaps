@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type='text/javascript' src="https://d3js.org/d3.v4.js"></script>
+    <script type='text/javascript' src="https://cdn.jsdelivr.net/planck/0.1/planck.js"></script>
+    <script type='text/javascript' src="https://rawgit.com/bgrins/TinyColor/master/tinycolor.js"></script>
+    <script type='text/javascript' src="../build/d3-bubbletreemap.js"></script>
+    <script>
+        function doIt() {
+            let svg = d3.select("#svgCircles");
+
+            d3.json("hierarchy.json?nocache=" + (new Date()).getTime(), function (error, data) {
+                drawChart(data, svg);
+            });
+        }
+
+        function drawChart(data, svg) {
+            // Create hierarchy.
+            let root = d3.hierarchy(data)
+                //.sum(function(d) { return Math.sqrt(d.size) / 10; }) // For flare.
+                .sum(function(d) { return d.size; })
+                .sort(function(a, b) { return b.value - a.value; });
+
+            // Create bubbletreemap.
+            let bubbletreemap = d3.bubbletreemap()
+                .padding(10)
+                .curvature(10)
+                .hierarchyRoot(root)
+                .width(svg.attr("width"))
+                .height(svg.attr("height"))
+                .colormap(["#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3", "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f"]); // Color brewer: 12-class Paired
+
+            // Do layout and coloring.
+            let hierarchyRoot = bubbletreemap.doLayout().doColoring().hierarchyRoot();
+
+            let leafNodes = hierarchyRoot.descendants().filter(function (candidate) {
+                return !candidate.children;
+            });
+
+            // Draw contour.
+            let contourGroup = svg.append("g")
+                .attr("class", "contour");
+
+            contourGroup.selectAll("path")
+                .data(bubbletreemap.getContour())
+                .enter().append("path")
+                .attr("d", function(arc) { return arc.d; })
+                .style("stroke", "black")
+                .style("stroke-width", function(arc) { return arc.strokeWidth; })
+                .attr("transform", function(arc) {return arc.transform;});
+
+            // Draw circles.
+            let circleGroup = svg.append("g")
+                .attr("class", "circlesAfterPlanck");
+
+            circleGroup.selectAll("circle")
+                .data(leafNodes)
+                .enter().append("circle")
+                .attr("r", function(d) { return d.r; })
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; })
+                .style("fill", function(d) { return d.color; })
+                .style("stroke", "black")
+                .style("stroke-width", "2");
+
+            // Draw labels.
+            /*let textGroup = svg.append("g")
+                .attr("class", "text");
+
+            textGroup.selectAll("text")
+                .data(leafNodes)
+                .enter().append("text")
+                .attr("font-size", "20px")
+                .style("fill", "black")
+                .text(function(d) { return d.data.name; })
+                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });*/
+        }
+    </script>
+</head>
+<body onload="doIt()">
+    <div id="svgCirclesContainer">
+        <svg id="svgCircles" style="border:1px solid black; position: fixed;" width="800" height="800"></svg>
+    </div>
+</body>
+</html>

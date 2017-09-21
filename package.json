@@ -1,0 +1,37 @@
+{
+  "name": "d3-bubbletreemap",
+  "version": "0.0.1",
+  "author": "Thilo Spinner (thilo.spinner@uni-konstanz.de)",
+  "description": "Finds bubbly hull for a group of circles.",
+  "keywords": [
+    "d3",
+    "d3-module",
+    "bubble",
+    "tree",
+    "map"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "build/d3-bubbletreemap.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/TLow0/d3-bubbletreemap",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TLow0/d3-bubbletreemap.git"
+  },
+  "scripts": {
+    "build": "rm -rf build && mkdir build && rollup -g planck-js:planck,tinycolor2:tinycolor -f umd -n d3 -o build/d3-bubbletreemap.js -- index.js",
+    "minimize": "npm run build && uglifyjs build/d3-bubbletreemap.js -c -m -o build/d3-bubbletreemap.min.js",
+    "pack": "zip -j build/d3-bubbletreemap.zip -- LICENSE README.md build/d3-bubbletreemap.js build/d3-bubbletreemap.min.js"
+  },
+  "dependencies": {
+    "d3": "^4.10.2",
+    "d3-hierarchy": "^1.1.5",
+    "planck-js": "^0.1.34",
+    "tinycolor2": "^1.4.1"
+  },
+  "devDependencies": {
+    "rollup": "^0.27.1",
+    "tape": "^4.8.0",
+    "uglify-js-es6": "^2.8.9"
+  }
+}
