@@ -4,7 +4,7 @@
 ### Disclaimer
 This is an ongoing rewrite of Bubble Treemaps in JavaScript and not the code that was used to generate the images in the paper. 
 
-A live demo can be found at (https://grtlr.github.io/bubble-treemaps/).
+A live demo can be found at https://grtlr.github.io/bubble-treemaps/.
 
 <img src="https://github.com/grtlr/bubble-treemaps/blob/master/bubble-treemap.png?raw=true" alt="Example of a Bubble Treemap" width="300px" height="300px">
 
