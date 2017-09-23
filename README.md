@@ -6,6 +6,8 @@ This is an ongoing rewrite of Bubble Treemaps in JavaScript and not the code tha
 
 A live demo can be found at (https://grtlr.github.io/bubble-treemaps/).
 
+<img src="https://github.com/grtlr/bubble-treemaps/blob/master/bubble-treemap.png?raw=true" alt="Example of a Bubble Treemap" width="300px" height="300px">
+
 More details about the publication, including a pre-print of the paper, can be found [here](http://graphics.uni-konstanz.de/publikationen/Goertler2018BubbleTreemapsUncertainty/index.html).
 
 ### Abstract
@@ -14,7 +16,7 @@ We present a novel type of circular treemap, where we intentionally allocate ext
 ### Citation
 ```
 @article{Goertler2017BubbleTreemapsUncertainty,
-  author     = {J. Görtler and C. Schulz and D. Weiskopf and O. Deussen},
+  author     = {Jochen Görtler and Christoph Schulz and Daniel Weiskopf and Oliver Deussen},
   journal    = {IEEE Transactions on Visualization and Computer Graphics},
   pages      = {(to appear)},
   title      = {Bubble Treemaps for Uncertainty Visualization},
