@@ -1,7 +1,10 @@
 # Bubble Treemaps for Uncertainty Visualization
-Implementation of Bubble Treemaps.
 
-**We are working on a JavaScript implementation of our prototype using D3.js. Our plan is to publish the code along with an online demo in time for the IEEEVis conference.**
+
+### Disclaimer
+This is an ongoing rewrite of Bubble Treemaps in JavaScript and not the code that was used to generate the images in the paper. 
+
+A live demo can be found at (https://grtlr.github.io/bubble-treemaps/).
 
 More details about the publication, including a pre-print of the paper, can be found [here](http://graphics.uni-konstanz.de/publikationen/Goertler2018BubbleTreemapsUncertainty/index.html).
 
@@ -10,21 +13,16 @@ We present a novel type of circular treemap, where we intentionally allocate ext
 
 ### Citation
 ```
-@article{Goertler2018BubbleTreemapsUncertainty,
+@article{Goertler2017BubbleTreemapsUncertainty,
   author     = {J. Görtler and C. Schulz and D. Weiskopf and O. Deussen},
   journal    = {IEEE Transactions on Visualization and Computer Graphics},
   pages      = {(to appear)},
   title      = {Bubble Treemaps for Uncertainty Visualization},
-  year       = {2018},
+  year       = {2017},
 }
 ```
 
-### Build
-
-To build, run:
+### Building 
 
     npm run build
-    
-To build and minimize, run: 
-
     npm run minimize
