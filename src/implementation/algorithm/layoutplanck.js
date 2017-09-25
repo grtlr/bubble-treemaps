@@ -53,8 +53,6 @@ export default function(hierarchyRoot, padding, width, height) {
 
             let centroid = getCircleCentroid(circleList);
 
-            console.log(layerClusters);
-            console.log(currentPPClusters);
             layoutClusters(currentPPClusters, centroid);
         });
     }

@@ -95,8 +95,6 @@
 
                 let centroid = getCircleCentroid(circleList);
 
-                console.log(layerClusters);
-                console.log(currentPPClusters);
                 layoutClusters(currentPPClusters, centroid);
             });
         }
