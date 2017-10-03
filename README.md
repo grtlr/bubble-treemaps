@@ -1,5 +1,6 @@
 # Bubble Treemaps for Uncertainty Visualization
 
+I want to thank [Thilo Spinner](https://github.com/tlow0) for providing this implementation.
 
 ### Disclaimer
 This is an ongoing rewrite of Bubble Treemaps in JavaScript and not the code that was used to generate the images in the paper. 
