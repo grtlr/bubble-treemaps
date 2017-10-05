@@ -24,8 +24,10 @@ export default function(hierarchyRoot, layerDepth, padding) {
             let contourClusterParentUncertainty = clusterParent.uncertainty/2;                                // Padding for contour (contour lies 50% outside of parent node).
             let planckClusterParentUncertainty = node !== clusterParent ? clusterParent.uncertainty : 0;      // Padding for force based layout (contours should not cut each other, i.e. full parent contour should be taken into account).
 
+            let interClusterSpacing = clusterNodes.length === 1 ? 0 : padding / 2.0; // For single circle: No padding, since it has no contour.
+
             node.contourPadding = (node.depth - clusterParent.depth) * padding + uncertaintySum + contourClusterParentUncertainty;
-            node.planckPadding = (node.depth - clusterParent.depth) * padding + uncertaintySum + planckClusterParentUncertainty + 5;
+            node.planckPadding = (node.depth - clusterParent.depth) * padding + uncertaintySum + planckClusterParentUncertainty + interClusterSpacing;
         });
 
         clusters.push({

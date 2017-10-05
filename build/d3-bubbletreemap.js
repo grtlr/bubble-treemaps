@@ -30,8 +30,10 @@
                 let contourClusterParentUncertainty = clusterParent.uncertainty/2;                                // Padding for contour (contour lies 50% outside of parent node).
                 let planckClusterParentUncertainty = node !== clusterParent ? clusterParent.uncertainty : 0;      // Padding for force based layout (contours should not cut each other, i.e. full parent contour should be taken into account).
 
+                let interClusterSpacing = clusterNodes.length === 1 ? 0 : padding / 2.0; // For single circle: No padding, since it has no contour.
+
                 node.contourPadding = (node.depth - clusterParent.depth) * padding + uncertaintySum + contourClusterParentUncertainty;
-                node.planckPadding = (node.depth - clusterParent.depth) * padding + uncertaintySum + planckClusterParentUncertainty + 5;
+                node.planckPadding = (node.depth - clusterParent.depth) * padding + uncertaintySum + planckClusterParentUncertainty + interClusterSpacing;
             });
 
             clusters.push({
@@ -42,6 +44,25 @@
 
         return clusters;
     };
+
+    // Extend array prototype by unique function.
+    Array.prototype.contains = function(v) {
+        for(var i = 0; i < this.length; i++) {
+            if(this[i] === v) return true;
+        }
+        return false;
+    };
+
+    Array.prototype.unique = function() {
+        var arr = [];
+        for(var i = 0; i < this.length; i++) {
+            if(!arr.contains(this[i])) {
+                arr.push(this[i]);
+            }
+        }
+        return arr;
+    };
+
 
     function lp(hierarchyRoot, padding, width, height) {
 
@@ -55,12 +76,33 @@
         for(let layerDepth = hierarchyRoot.height - 1; layerDepth >= 0; layerDepth--) {
             // Get clusters of circles on this layer.
             let layerClusters = getLayerClusters(hierarchyRoot, layerDepth, padding);
+
+            // Sort clusters by parents parent, to set correct center of attraction for bodies.
+            let pps = [];
+            layerClusters.forEach(function(cluster) {
+                pps.push(cluster.parent.parent);
+            });
+            pps = pps.unique();
+
             // Do the layout.
-            layoutClusters(layerClusters, width, height);
+            pps.forEach(function(pp) {
+                let currentPPClusters = layerClusters.filter(function(cluster) {
+                    return cluster.parent.parent === pp;
+                });
+
+                let circleList = [];
+                currentPPClusters.forEach(function(cluster) {
+                    circleList = circleList.concat(cluster.nodes);
+                });
+
+                let centroid = getCircleCentroid(circleList);
+
+                layoutClusters(currentPPClusters, centroid);
+            });
         }
     }
 
-    function layoutClusters(layerClusters, width, height) {
+    function layoutClusters(layerClusters, centroid) {
         // Create world with zero gravity.
         let world = planck.World({
             gravity: planck.Vec2(0,0)
@@ -73,7 +115,7 @@
         });
 
         // Create attractor.
-        let attractorBody = world.createBody(planck.Vec2(width/2,height/2));
+        let attractorBody = world.createBody(planck.Vec2(centroid.x, centroid.y));
 
         // Create joints between layerClusterBodies and attractor.
         layerClusterBodies.forEach(function(layerClusterBody) {
@@ -120,18 +162,8 @@
     }
 
     function createClusterBody(layerCluster, world) {
-        // Calculate centroid of circle group.
-        let circleMassSum = 0;
-        let bodyCentroid = planck.Vec2.zero();
-
-        layerCluster.nodes.forEach(function(circle) {
-            let circleMass = circle.r * circle.r * Math.PI;
-            circleMassSum += circleMass;
-            bodyCentroid.x += circle.x * circleMass;
-            bodyCentroid.y += circle.y * circleMass;
-        });
-
-        bodyCentroid.mul(1.0/circleMassSum);
+        // Get centroid of all circles.
+        let bodyCentroid = getCircleCentroid(layerCluster.nodes);
 
         // Create body.
         let body = world.createDynamicBody(bodyCentroid);
@@ -151,6 +183,23 @@
 
         // Return completed body.
         return body;
+    }
+
+    function getCircleCentroid(circles) {
+        // Calculate centroid of circle group.
+        let circleMassSum = 0;
+        let centroid = planck.Vec2.zero();
+
+        circles.forEach(function(circle) {
+            let circleMass = circle.r * circle.r * Math.PI;
+            circleMassSum += circleMass;
+            centroid.x += circle.x * circleMass;
+            centroid.y += circle.y * circleMass;
+        });
+
+        centroid.mul(1.0/circleMassSum);
+
+        return centroid;
     }
 
     function colorHierarchy(hierarchyRoot, colormap) {
