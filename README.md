@@ -21,7 +21,7 @@ We present a novel type of circular treemap, where we intentionally allocate ext
   journal    = {IEEE Transactions on Visualization and Computer Graphics},
   pages      = {(to appear)},
   title      = {Bubble Treemaps for Uncertainty Visualization},
-  year       = {2017},
+  year       = {2018},
 }
 ```
 
