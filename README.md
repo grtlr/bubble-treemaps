@@ -17,11 +17,14 @@ We present a novel type of circular treemap, where we intentionally allocate ext
 ### Citation
 ```
 @article{Goertler2017BubbleTreemapsUncertainty,
-  author     = {Jochen Görtler and Christoph Schulz and Daniel Weiskopf and Oliver Deussen},
-  journal    = {IEEE Transactions on Visualization and Computer Graphics},
-  pages      = {(to appear)},
-  title      = {Bubble Treemaps for Uncertainty Visualization},
-  year       = {2018},
+  author  = {Jochen Görtler and Christoph Schulz and Daniel Weiskopf and Oliver Deussen},
+  title   = {Bubble Treemaps for Uncertainty Visualization},
+  journal = {IEEE Transactions on Visualization and Computer Graphics},
+  year    = {2018},
+  volume  = {24},
+  number  = {1},
+  pages   = {719-728},
+  doi = {10.1109/TVCG.2017.2743959},
 }
 ```
 
