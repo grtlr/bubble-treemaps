@@ -24,7 +24,7 @@ We present a novel type of circular treemap, where we intentionally allocate ext
   volume  = {24},
   number  = {1},
   pages   = {719-728},
-  doi = {10.1109/TVCG.2017.2743959},
+  doi     = {10.1109/TVCG.2017.2743959},
 }
 ```
 
